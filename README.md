@@ -15,4 +15,4 @@ A Python-based tool for splitting large geospatial drone images (TIFF) into smal
 ## Project Structure
 - `notebooks/`: Contains the main Colab processing notebook.
 - `Scripts/`: Contains the `tiling_logic.py` script.
-- `output/`: (Ignored) Default directory for generated tiles.
+- `Examples/`: (Ignored) Default directory for generated tiles.
