@@ -1,1 +1,36 @@
+import os
+import rasterio
+from math import ceil
 
+def create_tiles(image_path, output_folder, tile_size=512):
+    """
+    Splits a large raster image into smaller tiles.
+    """
+    os.makedirs(output_folder, exist_ok=True)
+    with rasterio.open(image_path) as src:
+        width, height = src.width, src.height
+        num_tiles_x = ceil(width / tile_size)
+        num_tiles_y = ceil(height / tile_size)
+
+        for i in range(num_tiles_x):
+            for j in range(num_tiles_y):
+                x_off, y_off = i * tile_size, j * tile_size
+                win_width = min(tile_size, width - x_off)
+                win_height = min(tile_size, height - y_off)
+
+                window = rasterio.windows.Window(x_off, y_off, win_width, win_height)
+                tile_data = src.read(window=window)
+                output_file = os.path.join(output_folder, f'tile_{i}_{j}.tif')
+                
+                transform = rasterio.windows.transform(window, src.transform)
+                meta = src.meta.copy()
+                meta.update({
+                    'height': win_height,
+                    'width': win_width,
+                    'transform': transform,
+                    'driver': 'GTiff'
+                })
+
+                with rasterio.open(output_file, 'w', **meta) as dst:
+                    dst.write(tile_data)
+    return num_tiles_x * num_tiles_y
