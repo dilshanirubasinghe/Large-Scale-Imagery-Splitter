@@ -1,1 +1,12 @@
+# Python files
+__pycache__/
+*.py[cod]
 
+# Colab and Local Data
+.ipynb_checkpoints/
+drive/
+output/
+
+# Specific Large Files
+*.tif
+*.tiff
