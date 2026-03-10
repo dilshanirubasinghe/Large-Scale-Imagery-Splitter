@@ -1,2 +1,18 @@
-# Large-Scale-Imagery-Splitter
-Satellite Image Tiling Tool for Geospatial AIA high-performance Python tool developed in Google Colab designed to preprocess large-scale satellite imagery for machine learning and spatial analysis. This tool automates the process of dividing massive raster files (GeoTIFF, JPG, PNG) into standardized 256 \times 256 or 512 \times 512 pixel tiles.
+# Drone Imagery Tiling Utility
+
+A Python-based tool for splitting large geospatial drone images (TIFF) into smaller, manageable tiles using `rasterio`. This is particularly useful for preparing datasets for machine learning models or web-based map viewers.
+
+## Features
+- Automated tiling of large `.tif` files.
+- Handles edge cases where image dimensions aren't perfectly divisible by tile size.
+- Preserves geospatial metadata (CRS and Transform) for every tile.
+
+## Setup
+1. Clone the repository.
+2. Install dependencies: `pip install -r requirements.txt`.
+3. Run the notebook in Google Colab or locally.
+
+## Project Structure
+- `notebooks/`: Contains the main Colab processing notebook.
+- `Scripts/`: Contains the `tiling_logic.py` script.
+- `output/`: (Ignored) Default directory for generated tiles.
